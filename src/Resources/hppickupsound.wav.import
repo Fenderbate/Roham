@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hppickupsound.wav-5064bf401c24a0d2726070d0ee710245.sample"
+
+[deps]
+
+source_file="res://src/Resources/hppickupsound.wav"
+dest_files=[ "res://.import/hppickupsound.wav-5064bf401c24a0d2726070d0ee710245.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
