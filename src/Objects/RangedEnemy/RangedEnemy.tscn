@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Objects/RangedEnemy/RangedEnemy.gd" type="Script" id=1]
+[ext_resource path="res://src/Objects/RangedEnemy/anim_frames.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 20 )
+
+[node name="RangedEnemy" type="Area2D" index="0" groups=[
+"Enemy",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+pause_mode = 1
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Pause", "Transform", "Visibility", "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+[node name="DamageTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="BulletPivot" type="Position2D" parent="." index="4"]
+
+position = Vector2( 0, 20 )
+
+[node name="AnimTimer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_RangedEnemy_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_RangedEnemy_body_exited"]
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+
+[connection signal="timeout" from="AnimTimer" to="." method="_on_AnimTimer_timeout"]
+
+
