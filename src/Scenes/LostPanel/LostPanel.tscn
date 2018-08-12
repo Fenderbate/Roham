@@ -1,0 +1,167 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Scenes/LostPanel/LostPanel.gd" type="Script" id=1]
+[ext_resource path="res://src/Resources/font.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/Scenes/Menu/exit.png" type="Texture" id=3]
+[ext_resource path="res://src/Scenes/LostPanel/retry.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 48
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 85, 30 )
+
+[node name="LostPanel" type="Panel" index="0"]
+
+pause_mode = 2
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause", "Visibility" ]
+
+[node name="You lost" type="Label" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -230.0
+margin_top = -260.0
+margin_right = 330.0
+margin_bottom = -92.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "You Died.
+Your Score: "
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Exit" type="TextureButton" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -180.0
+margin_top = 120.0
+margin_right = -146.0
+margin_bottom = 132.0
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 3 )
+_sections_unfolded = [ "Rect", "Textures" ]
+
+[node name="Retry" type="TextureButton" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 120.0
+margin_right = 124.0
+margin_bottom = 132.0
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+_sections_unfolded = [ "Rect", "Textures" ]
+
+[node name="ExitArea" type="Area2D" parent="." index="3" groups=[
+"Panel",
+]]
+
+pause_mode = 2
+position = Vector2( -95, 150 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Pause" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" index="0"]
+
+shape = SubResource( 2 )
+disabled = true
+
+[node name="RetryArea" type="Area2D" parent="." index="4" groups=[
+"Panel",
+]]
+
+pause_mode = 2
+position = Vector2( 175, 150 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Pause" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RetryArea" index="0"]
+
+shape = SubResource( 2 )
+disabled = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_LostPanel_visibility_changed"]
+
+[connection signal="button_down" from="Exit" to="." method="_on_Exit_button_down"]
+
+[connection signal="button_down" from="Retry" to="." method="_on_Retry_button_down"]
+
+
